@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Request Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+              background-color: #e8630a;
+          
+        }
+        .form-section {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .checkbox-option:hover {
+            background-color: #f1f5f9;
+        }
+        .checkbox-option.selected {
+            background-color: #e0f2fe;
+            border-color: #38bdf8;
+        }
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        #confirmation-message {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">Mentorship Program</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Need guidance from experienced seniors or professionals? Fill out the form below to request mentorship in the area you need help with. Our mentors will get back to you as soon as possible!
+            </p>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Main Form Section -->
+            <div class="w-full lg:w-2/3">
+                <div class="bg-white rounded-xl p-8 form-section">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-6">Request Mentorship</h2>
+                    
+                    <form id="mentorshipForm" class="space-y-6">
+                        <!-- Personal Information -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+                                <input type="text" id="fullName" name="fullName" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Enter your full name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address*</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Enter your email">
+                            </div>
+                        </div>
+
+                        <!-- Academic Information -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="academicYear" class="block text-sm font-medium text-gray-700 mb-1">Current Academic Year*</label>
+                                <select id="academicYear" name="academicYear" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Select your year</option>
+                                    <option value="1st">1st Year</option>
+                                    <option value="2nd">2nd Year</option>
+                                    <option value="3rd">3rd Year</option>
+                                    <option value="4th">4th Year</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="department" class="block text-sm font-medium text-gray-700 mb-1">Branch/Department*</label>
+                                <input type="text" id="department" name="department" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="E.g. Computer Science">
+                            </div>
+                        </div>
+
+                        <!-- Mentorship Areas -->
+                        <div>
+                            <p class="block text-sm font-medium text-gray-700 mb-3">Area of Mentorship Required*</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('dsa')">
+                                    <input type="checkbox" id="dsa" name="mentorshipArea" value="DSA / Competitive Programming" class="hidden">
+                                    <label for="dsa" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        DSA / Competitive Programming
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('web')">
+                                    <input type="checkbox" id="web" name="mentorshipArea" value="Web Development" class="hidden">
+                                    <label for="web" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        Web Development
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('app')">
+                                    <input type="checkbox" id="app" name="mentorshipArea" value="App Development" class="hidden">
+                                    <label for="app" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        App Development
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('opensource')">
+                                    <input type="checkbox" id="opensource" name="mentorshipArea" value="Open Source" class="hidden">
+                                    <label for="opensource" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        Open Source
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('career')">
+                                    <input type="checkbox" id="career" name="mentorshipArea" value="Career Guidance / Resume" class="hidden">
+                                    <label for="career" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        Career Guidance / Resume
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('internship')">
+                                    <input type="checkbox" id="internship" name="mentorshipArea" value="Internships / Placement" class="hidden">
+                                    <label for="internship" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        Internships / Placement
+                                    </label>
+                                </div>
+                                <div class="checkbox-option border border-gray-200 rounded-lg p-3 cursor-pointer" onclick="toggleCheckbox('academic')">
+                                    <input type="checkbox" id="academic" name="mentorshipArea" value="Academic Help" class="hidden">
+                                    <label for="academic" class="flex items-center cursor-pointer">
+                                        <span class="wChar-5 h-5 border border-gray-300 rounded mr-2 flex items-center justify-center checkbox-indicator">
+                                            <i class="fas fa-check text-white text-xs"></i>
+                                        </span>
+                                        Academic Help
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="text" id="otherArea" name="otherArea"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                        placeholder="Others (please specify)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mentorship Reason -->
+                        <div>
+                            <label for="mentorshipReason" class="block text-sm font-medium text-gray-700 mb-1">Why do you want mentorship? (Optional)</label>
+                            <textarea id="mentorshipReason" name="mentorshipReason" rows="3" maxlength="500"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                placeholder="Briefly explain why you're seeking mentorship (max 500 characters)"></textarea>
+                            <div class="text-xs text-gray-500 text-right mt-1"><span id="charCount">0</span>/500 characters</div>
+                        </div>
+
+                        <!-- Communication Preferences -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <p class="block text-sm font-medium text-gray-700 mb-3">Preferred Communication Method*</p>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="communicationMethod" value="Email" class="mr-2" checked>
+                                        <span>Email</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="communicationMethod" value="WhatsApp" class="mr-2">
+                                        <span>WhatsApp</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="communicationMethod" value="Google Meet" class="mr-2">
+                                        <span>Google Meet</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="communicationMethod" value="In-person" class="mr-2">
+                                        <span>In-person (if same college)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="block text-sm font-medium text-gray-700 mb-3">Availability (Days/Time preferred)*</p>
+                                <select id="availability" name="availability" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Select preferred time</option>
+                                    <option value="Weekdays Morning (9AM-12PM)">Weekdays Morning (9AM-12PM)</option>
+                                    <option value="Weekdays Afternoon (12PM-5PM)">Weekdays Afternoon (12PM-5PM)</option>
+                                    <option value="Weekdays Evening (5PM-9PM)">Weekdays Evening (5PM-9PM)</option>
+                                    <option value="Weekend Morning (9AM-12PM)">Weekend Morning (9AM-12PM)</option>
+                                    <option value="Weekend Afternoon (12PM-5PM)">Weekend Afternoon (12PM-5PM)</option>
+                                    <option value="Weekend Evening (5PM-9PM)">Weekend Evening (5PM-9PM)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                                Request Mentorship
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Confirmation Message -->
+                    <div id="confirmation-message" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-xl mr-2"></i>
+                            <p class="font-medium">Your request has been sent to the mentor successfully!</p>
+                        </div>
+                        <p class="text-sm mt-1">We'll get back to you within 48 hours. Check your email for confirmation.</p>
+                    </div>
+                </div>
+
+                <!-- Testimonials Section -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4">What Our Mentees Say</h3>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-xl testimonial-card">
+                            <div class="flex items-center mb-4">
+                                <img src="https://placehold.co/50x50" alt="Portrait of a young Asian woman smiling, wearing glasses and a blue shirt" class="w-12 h-12 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium">Priya Sharma</p>
+                                    <p class="text-sm text-gray-500">2nd Year, Computer Science</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">
+                                "My mentor helped me improve my DSA skills dramatically. We worked on problem-solving approaches and now I'm more confident in interviews."
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl testimonial-card">
+                            <div class="flex items-center mb-4">
+                                <img src="https://placehold.co/50x50" alt="Portrait of a young man with short hair and a friendly expression, wearing a striped t-shirt" class="w-12 h-12 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium">Rahul Mehta</p>
+                                    <p class="text-sm text-gray-500">3rd Year, Electrical Engineering</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">
+                                "The career guidance sessions were invaluable. My mentor reviewed my resume and gave me tips that helped me land an internship at a top company."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mentors Section -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-xl p-6 sticky top-4">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-6">Available Mentors</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Mentor Card 1 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+                            <div class="flex items-start">
+                                <img src="https://placehold.co/80x80" alt="Portrait of a professional software developer in his late 20s wearing a collared shirt" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="font-medium">Dr. Ankit Verma</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Senior Software Engineer, Google</p>
+                                    <div class="flex flex-wrap gap-1 mb-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">DSA</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Web Dev</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Career</span>
+                                    </div>
+                                    <button onclick="showMentorModal('Ankit Verma')"
+                                        class="text-blue-600 text-sm font-medium hover:text-blue-800 transition">
+                                        View Profile & Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mentor Card 2 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+                            <div class="flex items-start">
+                                <img src="https://placehold.co/80x80" alt="Portrait of a female software engineer with curly hair and glasses, smiling confidently" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="font-medium">Neha Gupta</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Product Manager, Microsoft</p>
+                                    <div class="flex flex-wrap gap-1 mb-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Career</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Resume</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Internships</span>
+                                    </div>
+                                    <button onclick="showMentorModal('Neha Gupta')"
+                                        class="text-blue-600 text-sm font-medium hover:text-blue-800 transition">
+                                        View Profile & Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mentor Card 3 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+                            <div class="flex items-start">
+                                <img src="https://placehold.co/80x80" alt="Portrait of a serious-looking male developer with a beard, wearing a black t-shirt" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h3 class="font-medium">Vikram Singh</h3>
+                                    <p class="text-sm text-gray-500 mb-2">App Developer, Flipkart</p>
+                                    <div class="flex flex-wrap gap-1 mb-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">App Dev</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Open Source</span>
+                                    </div>
+                                    <button onclick="showMentorModal('Vikram Singh')"
+                                        class="text-blue-600 text-sm font-medium hover:text-blue-800 transition">
+                                        View Profile & Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mentor Modal -->
+    <div id="mentorModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl max-w-md w-full mx-4 p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="mentorModalTitle" class="text-xl font-semibold text-blue-700">Mentor Profile</h3>
+                <button onclick="hideMentorModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="mentorModalContent">
+                <!-- Content will be dynamically inserted -->
+            </div>
+            <div class="mt-6">
+                <button onclick="scrollToForm()"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition">
+                    Request Mentorship
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle checkbox selection
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            const container = checkbox.parentElement;
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                container.classList.add('selected');
+                container.querySelector('.checkbox-indicator').classList.add('bg-blue-500', 'border-blue-500');
+            } else {
+                container.classList.remove('selected');
+                container.querySelector('.checkbox-indicator').classList.remove('bg-blue-500', 'border-blue-500');
+            }
+        }
+
+        // Character count for mentorship reason
+        document.getElementById('mentorshipReason').addEventListener('input', function() {
+            document.getElementById('charCount').textContent = this.value.length;
+        });
+
+        // Form submission
+        document.getElementById('mentorshipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send the data to a server
+            // For demonstration, we'll just show the confirmation message
+            document.getElementById('confirmation-message').classList.remove('hidden');
+            document.getElementById('mentorshipForm').reset();
+            
+            // Reset character count
+            document.getElementById('charCount').textContent = '0';
+            
+            // Reset checkboxes
+            document.querySelectorAll('.checkbox-option').forEach(option => {
+                option.classList.remove('selected');
+                option.querySelector('.checkbox-indicator').classList.remove('bg-blue-500', 'border-blue-500');
+                option.querySelector('input[type="checkbox"]').checked = false;
+            });
+            
+            // Scroll to confirmation message
+            setTimeout(() => {
+                document.getElementById('confirmation-message').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+
+        // Mentor modal functions
+      function showMentorModal(mentorName) {
+    document.getElementById('mentorModalTitle').textContent = `${mentorName}'s Profile`;
+
+    // In a real app, this would fetch data from a database
+    let content = '';
+            if (mentorName === 'Ankit Verma') {
+                content = `
+                    <div class="space-y-4">
+                        <div class="flex justify-center">
+                            <img src="https://placehold.co/150x150" alt="High-quality portrait of Dr. Ankit Verma, a professional software developer in a formal setting" class="w-24 h-24 rounded-full">
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-lg font-medium">Dr. Ankit Verma</h4>
+                            <p class="text-gray-600">Senior Software Engineer at Google</p>
+                            <p class="text-gray-600 text-sm mt-1">5+ years experience</p>
+                        </div>
+                        <div class="border-t pt-4">
+                            <h5 class="font-medium mb-2">Areas of Expertise:</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Data Structures</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Algorithms</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">System Design</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Web Development</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">About:</h5>
+                            <p class="text-gray-600 text-sm">
+                                I'm passionate about helping students master technical interview skills. I've conducted over 200 interviews at Google and love sharing my knowledge to help the next generation of developers succeed.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">Availability:</h5>
+                            <p class="text-gray-600 text-sm">
+                                Weekday evenings (7PM-9PM) and Sunday afternoons (2PM-5PM)
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else if (mentorName === 'Neha Gupta') {
+                content = `
+                    <div class="space-y-4">
+                        <div class="flex justify-center">
+                            <img src="https://placehold.co/150x150" alt="Professional headshot of Neha Gupta, a confident female executive in business attire" class="w-24 h-24 rounded-full">
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-lg font-medium">Neha Gupta</h4>
+                            <p class="text-gray-600">Product Manager at Microsoft</p>
+                            <p class="text-gray-600 text-sm mt-1">7+ years experience</p>
+                        </div>
+                        <div class="border-t pt-4">
+                            <h5 class="font-medium mb-2">Areas of Expertise:</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Product Management</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Career Growth</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Resume Building</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Interview Prep</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">About:</h5>
+                            <p class="text-gray-600 text-sm">
+                                I help students transition from academia to industry, with a focus on product management and tech career development. My mentees have gone on to work at top tech companies across the globe.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">Availability:</h5>
+                            <p class="text-gray-600 text-sm">
+                                Saturdays (10AM-4PM) with occasional weekday slots
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else if (mentorName === 'Vikram Singh') {
+                content = `
+                    <div class="space-y-4">
+                        <div class="flex justify-center">
+                            <img src="https://placehold.co/150x150" alt="Casual photo of Vikram Singh, smiling and wearing a hoodie" class="w-24 h-24 rounded-full">
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-lg font-medium">Vikram Singh</h4>
+                            <p class="text-gray-600">Senior App Developer at Flipkart</p>
+                            <p class="text-gray-600 text-sm mt-1">4+ years experience</p>
+                        </div>
+                        <div class="border-t pt-4">
+                            <h5 class="font-medium mb-2">Areas of Expertise:</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Android</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">iOS</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Flutter</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Open Source</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">About:</h5>
+                            <p class="text-gray-600 text-sm">
+                                I specialize in mobile app development and open source contributions. I can help you with technical skills, interview preparation, and guidance on contributing to open source projects to build your portfolio.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">Availability:</h5>
+                            <p class="text-gray-600 text-sm">
+                                Flexible - can arrange sessions based on mutual convenience
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('mentorModalContent').innerHTML = content;
+            document.getElementById('mentorModal').classList.remove('hidden');
+        }
+
+        function hideMentorModal() {
+            document.getElementById('mentorModal').classList.add('hidden');
+        }
+
+        function scrollToForm() {
+            hideMentorModal();
+            document.getElementById('mentorshipForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('mentorModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideMentorModal();
+            }
+        });
+    </script>
+</body>
+</html>

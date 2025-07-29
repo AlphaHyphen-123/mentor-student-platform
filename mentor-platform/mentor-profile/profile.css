@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f5f7fa;
+  min-height: 100vh;
+  background: url(../assets/BGimg.jpg);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #000000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
+}
+
+.sidebar .logo {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li.active a {
+  color: #4a90e2;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.topbar h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+      color: wheat;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Dashboard layout */
+.dashboard {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Profile card */
+.profile-card {
+  flex: 1;
+   background:url(../assets/BGcardimg.png);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-card img.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.profile-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.profile-card p {
+  margin: 0.4rem 0;
+  color: #000000;
+}
+
+.request-btn {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.request-btn:hover {
+  background-color: #357ab8;
+}
+
+/* Bio section */
+.bio-section {
+  flex: 1;
+  background:url(../assets/BGcardimg.png);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bio-section h3 {
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.bio-section p {
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* Skills section */
+.skills-section {
+  flex: 1;
+  background:url(../assets/BGcardimg.png);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skills-section h3 {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.skills-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-section li {
+  background: #e3f2fd;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #1e88e5;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#mentorName{
+  color: yellow;
+    font-weight: 900;
+    font-family: emoji;
+}
+
+.two{
+     display: grid;
+     grid-template-columns: 1;
+     grid-template-rows: 2;
+     gap: 20px;
+}
+
+/* Buttons */
+button {
+  margin: 0.7rem 0.3rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button.edit {
+  background: #4caf50;
+  color: #fff;
+}
+
+button.save {
+  background: #2196f3;
+  color: #fff;
+}
+
+input#imageInput {
+  padding: 8px;
+  width: 90%;
+  margin: 10px auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}

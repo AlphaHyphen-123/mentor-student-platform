@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add New Mentor</title>
+  <link rel="stylesheet" href="create.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>MySeniorBuddy</h1>
+      <nav>
+        <ul>
+          <li><a href="../../HomePage/Home.html">Home</a></li>
+          <li><a href="../index.html">Mentors</a></li>
+          <li><a href="../../JuniorDashboard/junior-dashboard.html">junior</a></li>
+          <li><a href="../../Seniordashboard/senior-dashboard.html">sinior</a></li>
+          <li><a href="../../loginPage/login.html">Login</a></li>
+          <li><a href="../../RegistrationPage/Registration.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sec2">
+    <h2>Add Mentor Details</h2>
+    <form id="mentorForm">
+      <input type="text" placeholder="Name" id="name" required />
+      
+      <label for="role">Select Role</label>
+      <select id="role" required>
+        <option value="">Choose Role</option>
+        <option value="senior">Senior</option>
+        <option value="junior">Junior</option>
+      </select>
+
+      <label for="technology" id="hh">Select Technologies</label>
+      <select style="margin-top: 24px;" id="technology" multiple required>
+        <option value="Java">Java</option>
+        <option value="C++">C++</option>
+        <option value="Python">Python</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="React">React</option>
+        <option value="Node.js">Node.js</option>
+        <option value="MongoDB">MongoDB</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+      </select>
+      <small>(Hold Ctrl or Cmd to select multiple)</small>
+
+      <div id="selectedTechs" style="margin-top: 10px;"></div>
+
+      <input type="text" placeholder="Company" id="company" required />
+      <input type="file" id="imageFile" accept="image/*" required />
+      <button type="submit">Add Mentor</button>
+    </form>
+  </div>
+
+  <script src="create.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - MySeniorBuddy</title>
+  <link rel="stylesheet" href="login.css" />
+  
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>MySeniorBuddy</h1>
+      <nav>
+        <ul>
+          <li><a href="../HomePage/Home.html">Home</a></li>
+          <li><a href="../mentor-platform/index.html">Index</a></li>
+          <li><a href="../mentor-platform/mentor-profile/profile.html">Mentors</a></li>
+          <li><a href="../mentor-platform/index.html">junior</a></li>
+          <li><a href="../mentor-platform/index.html">sinior</a></li>
+          <li><a href="../loginPage/login.html">Login</a></li>
+          <li><a href="../RegistrationPage/Registration.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container2">
+      <form id="loginForm" class="login-form">
+        <h2>Login to MySeniorBuddy</h2>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <div class="form-group">
+          <label for="role">Login as:</label>
+          <select id="role" name="role" required>
+             <option value="">Select</option>
+            <option value="junior">Junior</option>
+            <option value="senior">Senior</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn">Login</button>
+        </div>
+
+        <p id="message"></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="login.js"></script>
+ 
+</body>
+
+</html>

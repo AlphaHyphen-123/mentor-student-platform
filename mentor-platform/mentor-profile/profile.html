@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentor Profile Dashboard</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div class="logo">👨‍🏫</div>
+    <nav>
+      <ul>
+        <li class="active"><a href="#">Mentor Dashboard</a></li>
+        <li><a href="#">All Mentors</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">My Requests</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <h1>Mentor Profile</h1>
+      <p style="color: aliceblue;">Explore and connect with your mentor</p>
+      <div class="user-info">
+        <img src="profile-placeholder.jpg" alt="Profile" id="profileImage" />
+        <span id="mentorName">Welcome, Junior!</span>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="profile-card">
+        <img id="mentorImage" src="https://via.placeholder.com/150" alt="Mentor" class="profile-photo" />
+        <h2 id="mentorNameCard">Mentor Name</h2>
+        <p><strong>Expertise:</strong> <span id="mentorTech"></span></p>
+        <p><strong>Company:</strong> <span id="mentorCompany"></span></p>
+        <p><strong>Email:</strong> <span id="mentorEmail"></span></p>
+        <p><strong>Phone:</strong> <span id="mentorPhone"></span></p>
+        <p><strong>Availability:</strong> <span id="mentorAvailability"></span></p>
+        <button class="request-btn" onclick="fun()">Request Mentorship</button>
+      </section>
+
+
+      <div class="two">
+        <section class="bio-section">
+          <h3>About Mentor</h3>
+          <p id="mentorBio">This section will contain a short bio or background of the mentor.</p>
+        </section>
+
+        <section class="skills-section">
+          <h3>Skills & Technologies</h3>
+          <ul id="mentorSkills">
+            <li>Java</li>
+            <li>Spring Boot</li>
+            <li>MySQL</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+
+</html>
