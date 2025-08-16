@@ -1,22 +1,22 @@
-// database.js
-import mysql from 'mysql';
+import mysql from 'mysql2';
+import dotenv from 'dotenv';
 
-// MySQL database connection setup
+dotenv.config();
+
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Shivam@123', // update with your password
-  database: 'mentorshipDB' // make sure this DB exists
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
 });
 
-// Connect to MySQL
 db.connect((err) => {
   if (err) {
     console.error('❌ MySQL Connection Error:', err.message);
     return;
   }
-  console.log('✅ MySQL Connected to mentorshipDB');
+  console.log('✅ MySQL Connected to Railway DB');
 });
 
-// Export the db connection (ES Module syntax)
 export default db;
