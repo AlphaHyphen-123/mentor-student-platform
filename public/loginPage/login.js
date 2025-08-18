@@ -8,13 +8,14 @@ form.addEventListener('submit', async (e) => {
   const role = document.getElementById('role').value;
 
   try {
-    const response = await fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, role }),
-    });
+const response = await fetch('http://localhost/mentor-platform/backend/login.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ email, password, role }),
+});
+
 
     const data = await response.json();
 

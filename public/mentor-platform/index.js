@@ -1,5 +1,3 @@
-// Initialize mentors in localStorage if not already present
-
 // Simulated logged-in user (replace with actual login logic)
 if (!localStorage.getItem('loggedInUser')) {
   localStorage.setItem('loggedInUser', JSON.stringify({ id: 200, role: "senior" }));
@@ -12,12 +10,30 @@ const cardContainer = document.getElementById('mentorCards');
 
 // Event Listeners
 window.onload = () => {
-  displayMentors();
+  fetchMentors(); // 🚀 Now load mentors from PHP backend
   searchInput.addEventListener('input', filterMentors);
   filterSelect.addEventListener('change', filterMentors);
 };
 
-// Display mentor cards
+// 🔹 Fetch mentors from backend (PHP)
+function fetchMentors() {
+  fetch("/php/mentor.php?action=getAll")
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        localStorage.setItem("mentors", JSON.stringify(data.mentors));
+        displayMentors(data.mentors);
+      } else {
+        cardContainer.innerHTML = `<p style="color:white; font-size: 1.2rem;">${data.message}</p>`;
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching mentors:", err);
+      cardContainer.innerHTML = `<p style="color:white;">Server error. Try again later.</p>`;
+    });
+}
+
+// 🔹 Display mentor cards
 function displayMentors(mentorsList = null) {
   const mentors = mentorsList || JSON.parse(localStorage.getItem('mentors')) || [];
   const user = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -33,11 +49,7 @@ function displayMentors(mentorsList = null) {
     card.className = 'card';
 
     const imageSrc = mentor.image || 'https://via.placeholder.com/300x200?text=No+Image';
-
-    const isOwner = user && user.role === 'senior' && user.id === mentor.ownerId;
-
-    console.log('Mentor:', mentor.name, 'Owner ID:', mentor.ownerId, 'Logged-in ID:', user.id, 'isOwner:', isOwner);
-
+    const isOwner = user && user.role === 'senior' && user.id == mentor.ownerId;
 
     card.innerHTML = `
       <img src="${imageSrc}" alt="${mentor.name}" class="mentor-img" />
@@ -55,7 +67,7 @@ function displayMentors(mentorsList = null) {
   });
 }
 
-// Filter mentors by name and technology
+// 🔹 Filter mentors
 function filterMentors() {
   const searchTerm = searchInput.value.toLowerCase();
   const selectedTech = filterSelect.value;
@@ -72,53 +84,24 @@ function filterMentors() {
   displayMentors(filtered);
 }
 
-// Redirect to detailed profile page
+// 🔹 Redirects
 function viewProfile(id) {
   window.location.href = `mentor-profile/profile.html?id=${id}`;
 }
 
-// Redirect to edit page
 function editMentor(id) {
   window.location.href = `create-profile/create.html?id=${id}`;
 }
 
-// Delete mentor with undo option
-let lastDeletedMentor = null;
-
+// 🔹 Delete mentor (from backend)
 function deleteMentor(id) {
   if (confirm("Are you sure you want to delete this mentor?")) {
-    let mentors = JSON.parse(localStorage.getItem('mentors')) || [];
-    lastDeletedMentor = mentors.find(m => m.id === id);
-    mentors = mentors.filter(mentor => mentor.id !== id);
-    localStorage.setItem('mentors', JSON.stringify(mentors));
-    displayMentors();
-    showUndoMessage();
+    fetch(`/php/mentor.php?action=delete&id=${id}`, { method: "GET" })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        fetchMentors(); // reload mentors from DB
+      })
+      .catch(err => console.error("Delete error:", err));
   }
-}
-
-function showUndoMessage() {
-  const undoDiv = document.createElement('div');
-  undoDiv.style = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 5px; z-index: 9999;';
-  undoDiv.innerHTML = `Mentor deleted. <button onclick="undoDelete()" style="color: #fff; background: transparent; border: 1px solid white; margin-left: 10px; cursor: pointer;">Undo</button>`;
-  
-  document.body.appendChild(undoDiv);
-
-  setTimeout(() => {
-    if (undoDiv.parentNode) {
-      undoDiv.parentNode.removeChild(undoDiv);
-      lastDeletedMentor = null;
-    }
-  }, 5000);
-}
-
-function undoDelete() {
-  if (lastDeletedMentor) {
-    const mentors = JSON.parse(localStorage.getItem('mentors')) || [];
-    mentors.push(lastDeletedMentor);
-    localStorage.setItem('mentors', JSON.stringify(mentors));
-    lastDeletedMentor = null;
-    displayMentors();
-  }
-  const undoDiv = document.querySelector('body > div[style*="position: fixed"]');
-  if (undoDiv) undoDiv.remove();
 }

@@ -1,16 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const techSelect = document.getElementById('technology');
-  const techDisplay = document.getElementById('selectedTechs');
-
-  techSelect.addEventListener('change', () => {
-    const selected = Array.from(techSelect.selectedOptions).map(opt => opt.value);
-    techDisplay.innerHTML = selected.map(tech =>
-      `<span style="display:inline-block;background:#4CAF50;color:white;padding:5px 10px;border-radius:5px;margin:5px 5px 0 0;">${tech}</span>`
-    ).join('');
-  });
-});
-
-document.getElementById('mentorForm').addEventListener('submit', function (e) {
+document.getElementById('mentorForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const name = document.getElementById('name').value.trim();
@@ -31,29 +19,32 @@ document.getElementById('mentorForm').addEventListener('submit', function (e) {
     return;
   }
 
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    const image = event.target.result;
+  // Prepare form data
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('role', role);
+  formData.append('company', company);
+  formData.append('image', imageFile);
+  formData.append('technologies', JSON.stringify(technologies));
+  formData.append('ownerId', loggedInUser.id);
 
-    const mentors = JSON.parse(localStorage.getItem('mentors')) || [];
+  try {
+    const response = await fetch('http://localhost/mentor-platform/backend/createMentor.php', {
+      method: 'POST',
+      body: formData
+    });
 
-    const newMentor = {
-      id: Date.now(),
-      name,
-      technology: technologies, // Array of techs
-      company,
-      image,
-      role,
-      ownerId: loggedInUser.id
-    };
+    const result = await response.json();
 
-    mentors.push(newMentor);
-    localStorage.setItem('mentors', JSON.stringify(mentors));
-
-    alert('Mentor added successfully!');
-    document.getElementById('mentorForm').reset();
-    document.getElementById('selectedTechs').innerHTML = '';
-  };
-
-  reader.readAsDataURL(imageFile);
+    if (result.success) {
+      alert('Mentor added successfully!');
+      document.getElementById('mentorForm').reset();
+      document.getElementById('selectedTechs').innerHTML = '';
+    } else {
+      alert('Error: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Server error. Please try again later.');
+  }
 });

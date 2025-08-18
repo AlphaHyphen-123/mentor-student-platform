@@ -15,37 +15,33 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     return;
   }
 
-  // Remove confirmPassword before sending
-  delete userData.confirmPassword;
+  // Prepare form data for PHP
+  let formData = new FormData();
+  formData.append("fullname", userData.fullname);
+  formData.append("email", userData.email);
+  formData.append("password", userData.password);
+  formData.append("role", userData.role);
 
-  fetch("http://localhost:3000/api/register", {
+  // PHP endpoint (change according to your folder structure)
+  fetch("/php/register.php", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      fullname: userData.fullname,
-      email: userData.email,
-      password: userData.password,
-      role: userData.role
-    })
+    body: formData
   })
-  .then(response => response.json())  // Parse JSON here
+  .then(response => response.json())
   .then(data => {
-    if (data.message === 'Registration successful!') {
-      alert('Registration successful! Ab aap login kar sakte hain.');
+    if (data.status === "success") {
+      alert("Registration successful! Ab aap login kar sakte hain.");
 
       // Redirect to login page with email and password in URL
       const email = encodeURIComponent(userData.email);
       const password = encodeURIComponent(userData.password);
-
-      window.location.href = `/loginPage/login.html?email=${email}&password=${password}`;
+      window.location.href = `/public/loginPage/login.html?email=${email}&password=${password}`;
     } else {
-      alert(data.message || 'Kuch galat ho gaya. Kripya baad me try karein.');
+      alert(data.message || "Kuch galat ho gaya. Kripya baad me try karein.");
     }
   })
   .catch(error => {
-    console.error('Error:', error);
-    alert('Kuch galat ho gaya. Kripya baad me try karein.');
+    console.error("Error:", error);
+    alert("Kuch galat ho gaya. Kripya baad me try karein.");
   });
 });
